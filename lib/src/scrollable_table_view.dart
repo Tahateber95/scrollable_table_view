@@ -268,7 +268,7 @@ class TableViewRow extends StatelessWidget {
         Container(
           height: tableView.rowDividerHeight,
           width: tableView.contentWidth,
-          color: Colors.black26,
+          color: Colors.black12,
         ),
       ],
     );
