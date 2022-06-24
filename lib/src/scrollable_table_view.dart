@@ -11,9 +11,11 @@ class ScrollableTableView extends StatefulWidget {
     required this.columns,
     this.headerHeight = 40,
     this.rowDividerHeight = 1.0,
+    this.ColumnsbacgroundColor,
   }) : super(key: key);
 
   final List<TableViewColumn> columns;
+  final Color? ColumnsbacgroundColor;
   final List<TableViewRow> rows;
   final double headerHeight;
   final double rowDividerHeight;
@@ -106,8 +108,12 @@ class _ScrollableTableViewState extends State<ScrollableTableView> {
                           children: [
                             SizedBox(
                               height: widget.headerHeight,
-                              child: Row(
-                                children: widget.columns,
+                              child: Container(
+                                color: widget.ColumnsbacgroundColor ??
+                                    Colors.white,
+                                child: Row(
+                                  children: widget.columns,
+                                ),
                               ),
                             ),
                             Container(
@@ -186,7 +192,6 @@ class TableViewColumn extends StatelessWidget {
     this.labelFontSize = 14,
     this.minWidth = 80,
     this.labelStyle,
-    this.backgroundColor,
   }) : super(key: key);
 
   final double? width;
@@ -194,7 +199,6 @@ class TableViewColumn extends StatelessWidget {
   final double spacing;
   final String label;
   final TextStyle? labelStyle;
-  final Color? backgroundColor;
   final double labelFontSize;
   final double minWidth;
 
@@ -207,7 +211,6 @@ class TableViewColumn extends StatelessWidget {
     return Container(
       width: getWidth(),
       height: height,
-      color: backgroundColor ?? Colors.white,
       margin: EdgeInsets.symmetric(horizontal: spacing),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
