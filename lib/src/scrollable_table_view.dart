@@ -11,11 +11,11 @@ class ScrollableTableView extends StatefulWidget {
     required this.columns,
     this.headerHeight = 40,
     this.rowDividerHeight = 1.0,
-    this.ColumnsbacgroundColor,
+    this.columnsbacgroundColor,
   }) : super(key: key);
 
   final List<TableViewColumn> columns;
-  final Color? ColumnsbacgroundColor;
+  final Color? columnsbacgroundColor;
   final List<TableViewRow> rows;
   final double headerHeight;
   final double rowDividerHeight;
@@ -109,7 +109,7 @@ class _ScrollableTableViewState extends State<ScrollableTableView> {
                             SizedBox(
                               height: widget.headerHeight,
                               child: Container(
-                                color: widget.ColumnsbacgroundColor ??
+                                color: widget.columnsbacgroundColor ??
                                     Colors.white,
                                 child: Row(
                                   children: widget.columns,
