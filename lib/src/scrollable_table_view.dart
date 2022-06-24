@@ -231,12 +231,12 @@ class TableViewRow extends StatelessWidget {
     Key? key,
     required this.cells,
     this.height = 40,
-    required this.onSelected,
+    required this.onRowTap,
   }) : super(key: key);
 
   final List<TableViewCell> cells;
   final double height;
-  final void Function() onSelected;
+  final void Function() onRowTap;
 
   @override
   Widget build(BuildContext context) {
@@ -250,7 +250,7 @@ class TableViewRow extends StatelessWidget {
         SizedBox(
           height: height,
           child: InkWell(
-            onTap: onSelected,
+            onTap: onRowTap,
             child: Row(
               children: Utils.map(cells, (index, cell) {
                 /// [SizedBox] below acts as a parent to each of the cells.
