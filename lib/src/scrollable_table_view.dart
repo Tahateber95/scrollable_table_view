@@ -185,12 +185,16 @@ class TableViewColumn extends StatelessWidget {
     this.spacing = 0,
     this.labelFontSize = 14,
     this.minWidth = 80,
+    this.labelStyle,
+    this.backgroundColor,
   }) : super(key: key);
 
   final double? width;
   final double? height;
   final double spacing;
   final String label;
+  final TextStyle? labelStyle;
+  final Color? backgroundColor;
   final double labelFontSize;
   final double minWidth;
 
@@ -203,13 +207,14 @@ class TableViewColumn extends StatelessWidget {
     return Container(
       width: getWidth(),
       height: height,
+      color: backgroundColor ?? Colors.white,
       margin: EdgeInsets.symmetric(horizontal: spacing),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             label,
-            style:
+            style: labelStyle ??
                 TextStyle(fontSize: labelFontSize, fontWeight: FontWeight.bold),
           ),
         ],
