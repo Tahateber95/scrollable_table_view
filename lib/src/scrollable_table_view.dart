@@ -247,10 +247,10 @@ class TableViewRow extends StatelessWidget {
 
     return Column(
       children: [
-        InkWell(
-          onTap: onSelected,
-          child: SizedBox(
-            height: height,
+        SizedBox(
+          height: height,
+          child: InkWell(
+            onTap: onSelected,
             child: Row(
               children: Utils.map(cells, (index, cell) {
                 /// [SizedBox] below acts as a parent to each of the cells.
