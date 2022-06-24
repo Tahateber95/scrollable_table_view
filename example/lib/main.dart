@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:example/model.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_table_view/scrollable_table_view.dart';
@@ -39,22 +41,53 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ScrollableTableView(
-        columns: columns.map((column) {
-          return TableViewColumn(
-            label: column,
-          );
-        }).toList(),
-        rows: products.map((product) {
-          return TableViewRow(
-            height: 60,
-            cells: columns.map((column) {
-              return TableViewCell(
-                child: Text(product[column] ?? ""),
+      body: SizedBox(
+        height: 500,
+        width: MediaQuery.of(context).size.width,
+        child: ScrollableTableView(
+          columnsbBackgroundColor: Colors.grey.shade100,
+          columns: [
+            ...columns.map((column) {
+              return TableViewColumn(
+                label: column,
               );
             }).toList(),
-          );
-        }).toList(),
+            const TableViewColumn(
+              label: '',
+            ),
+            const TableViewColumn(
+              label: '',
+            )
+          ],
+          rows: List.generate(
+              products.length,
+              (index) => TableViewRow(
+                      onSelected: () {
+                        log(index.toString());
+                      },
+                      height: 60,
+                      cells: [
+                        ...columns.map((column) {
+                          return TableViewCell(
+                            child: Text(products[index][column] ?? ""),
+                          );
+                        }).toList(),
+                        TableViewCell(
+                          child: IconButton(
+                              onPressed: () {
+                                log('pressed at: ' + index.toString());
+                              },
+                              icon: Icon(Icons.edit)),
+                        ),
+                        TableViewCell(
+                          child: IconButton(
+                              onPressed: () {
+                                log('pressed at: ' + index.toString());
+                              },
+                              icon: Icon(Icons.delete)),
+                        ),
+                      ])),
+        ),
       ),
     );
   }
