@@ -231,10 +231,12 @@ class TableViewRow extends StatelessWidget {
     Key? key,
     required this.cells,
     this.height = 40,
+    required this.onSelected,
   }) : super(key: key);
 
   final List<TableViewCell> cells;
   final double height;
+  final void Function() onSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -245,18 +247,21 @@ class TableViewRow extends StatelessWidget {
 
     return Column(
       children: [
-        SizedBox(
-          height: height,
-          child: Row(
-            children: Utils.map(cells, (index, cell) {
-              /// [SizedBox] below acts as a parent to each of the cells.
-              /// Its width ensures that all cells in a column have the
-              /// same width as the respective [TableViewColumn]
-              return SizedBox(
-                width: columns[index].getWidth(),
-                child: cell,
-              );
-            }),
+        InkWell(
+          onTap: onSelected,
+          child: SizedBox(
+            height: height,
+            child: Row(
+              children: Utils.map(cells, (index, cell) {
+                /// [SizedBox] below acts as a parent to each of the cells.
+                /// Its width ensures that all cells in a column have the
+                /// same width as the respective [TableViewColumn]
+                return SizedBox(
+                  width: columns[index].getWidth(),
+                  child: cell,
+                );
+              }),
+            ),
           ),
         ),
         Container(
