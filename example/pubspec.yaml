@@ -29,7 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  scrollable_table_view: ^0.0.1
+  scrollable_table_view: 
+    git: https://github.com/Tahateber95/scrollable_table_view.git
 
 
   # The following adds the Cupertino Icons font to your application.
